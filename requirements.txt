@@ -9,3 +9,4 @@ statsmodels
 openai
 python-dotenv
 seaborn
+plotly
