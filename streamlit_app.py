@@ -21,7 +21,7 @@ def load_data():
         df_final = pd.read_csv("df_final.csv", index_col=0)
         with open("customer_llm_summaries_clean.json", "r", encoding="utf-8") as f:
             cust_llm = json.load(f)
-        with open("llm_cluster_responses.json", "r", encoding="utf-8") as f:
+        with open("group_llm_summaries.json", "r", encoding="utf-8") as f:
             cluster_llm = json.load(f)
         return result_df, df_pivot, df_final,cust_llm, cluster_llm
     except Exception as e:
@@ -339,4 +339,5 @@ if group_key in summary_cache:
 
     st.markdown("### 📝 Generated Report")
     st.code(report_md, language="markdown")
+
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
