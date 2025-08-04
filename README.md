@@ -1,7 +1,7 @@
 # RevTrend-AI-Customer-Segmentation-Revenue-Risk-System
 An interactive dashboard for identifying revenue decline, customer segmentation, and generating insights with LLMs, enabling businesses to take timely, data-driven action.
 
-## 🌐 Live Demo :
+## 🌐 Live Demo : https://revenue-risk-system.streamlit.app
 
 ## What Business Problem Does It Solve?
 ### Businesses often struggle to:
