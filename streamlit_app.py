@@ -129,20 +129,22 @@ with col2:
 
 # 🔹 Load cluster-level LLM summary
 st.markdown("---")
-st.markdown("## 🧠 LLM Cluster Summaries")
+st.markdown("<h2 style='font-size:22px;'>🧠 LLM Cluster Summaries</h2>", unsafe_allow_html=True)
 
 with open("llm_cluster_responses.json", "r", encoding="utf-8") as f:
     cluster_summary = json.load(f)
 
 for cid in [0, 1, 2]:
-    st.markdown(f"### 🔹 Cluster {cid}")
-    st.markdown(cluster_summary.get(str(cid), "_No summary available_"))
+    st.markdown(f"<h3 style='font-size:18px;'>🔹 Cluster {cid}</h3>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div style='font-size:14px; line-height:1.6'>{cluster_summary.get(str(cid), '_No summary available_')}</div>",
+        unsafe_allow_html=True
+    )
 
 
 #section 3
 
-
-st.markdown("<span style='font-size:24px'><b>3. Individual Customer Revenue Trend & Anomaly Highlights</b></span>", unsafe_allow_html=True)
+st.subheader("3️⃣Individual Customer Revenue Trend & Anomaly Highlights")
 
 #  Decline level 
 sel_level = st.selectbox("Select Decline Level", sorted(df_final['decline_level'].dropna().unique()),key="sel_level_sectionA")
@@ -346,6 +348,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
