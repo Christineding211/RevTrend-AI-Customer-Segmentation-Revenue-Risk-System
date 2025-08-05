@@ -230,7 +230,12 @@ ax.set_title(f"Customer {sel_cust} – Revenue Trend",fontsize=12)
 ax.set_ylabel("Revenue (£)",fontsize=10)
 ax.set_xlabel("Month",fontsize=10)
 plt.xticks(rotation=45, fontsize=8)
-ax.legend()
+ax.legend(
+    loc="upper left",
+    bbox_to_anchor=(1.02, 1),
+    borderaxespad=0,
+    fontsize=10
+)
 ax.grid(True)
 plt.tight_layout()
 st.pyplot(fig, use_container_width= False)
@@ -349,6 +354,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
