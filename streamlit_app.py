@@ -11,8 +11,8 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
+st.markdown("<h1 style='font-size:28px;'>📊 RevTrend: AI Customer Segmentation & Revenue Risk Dashboard</h1>", unsafe_allow_html=True)
 
-st.set_page_config(page_title="📊 RevTrend: AI Customer Segmentation & Revenue Risk Dashboard",layout="centered")
 
 def load_data():
     try:
@@ -60,7 +60,7 @@ with c1:
 with c2:
     st.metric("🔢 Total Customers", len(result_df))
     st.metric("🔴 High-Risk (Lvl 2+3)", level_counts.get(2, 0) + level_counts.get(3, 0))
-    st.metric("📈 Avg Slope (All)", f"{result_df['slope'].mean():.1f}")
+    st.metric("📈 Avg Monthly Revenue Change", f"£{result_df['slope'].mean():.1f}")
 
 st.divider()
 
@@ -355,6 +355,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
