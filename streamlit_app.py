@@ -232,7 +232,7 @@ ax.set_xlabel("Month",fontsize=10)
 plt.xticks(rotation=45, fontsize=8)
 ax.legend(
     loc="lower center",
-    bbox_to_anchor=(0.5, 1.02),
+    bbox_to_anchor=(0.5, 1.12),
     ncol=3,               
     fontsize=9,
     frameon=False         #no frame
@@ -355,6 +355,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
