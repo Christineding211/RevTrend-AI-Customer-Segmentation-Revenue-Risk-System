@@ -41,7 +41,7 @@ cols = ["#8CB5F6", "#E4BEF5", "#F6CD82", "#FA6986"]        # green → red
 
 c1, c2 = st.columns([2, 1])
 with c1:
-    fig, ax = plt.subplots(figsize=(5, 3))
+    fig, ax = plt.subplots(figsize=(4, 3))
 
     x = level_counts.index
     y = level_counts.values
@@ -51,8 +51,8 @@ with c1:
     ax.set_xticklabels(['0', '1', '2', '3'])  
     ax.set_xlabel("Decline Level (0 = Stable, 3 = Critical)")
     ax.set_ylabel("Number of Customers")
-    ax.set_title("Decline Level Distribution")
-    st.pyplot(fig)
+    ax.set_title("Decline Level Distribution", fontsize=12)
+    st.pyplot(fig, use_container_width=True) 
 
 
 
@@ -184,7 +184,7 @@ ax.set_ylabel("Revenue (£)")
 ax.set_xlabel("Month")
 plt.xticks(rotation=45)
 ax.legend()
-st.pyplot(fig)
+st.pyplot(fig, use_container_width=True)
 
 #Section 4
 st.markdown("## 🔴 Section B: High-Risk Customer Overview (Decline Level 2 or 3)")
@@ -218,14 +218,14 @@ trend = intercept + slope * x
 ma3 = rev.rolling(3).mean()
 
 # Revenue trend chart
-fig, ax = plt.subplots(figsize=(8, 3))
+fig, ax = plt.subplots(figsize=(6, 3))
 ax.plot(rev.index, y, label='Monthly Revenue (£)', marker='o')
 ax.plot(rev.index, trend, label='Trend Line (Theil-Sen)', linestyle='--')
 ax.plot(rev.index, ma3, label='3-Month Moving Average', linestyle=':')
 ax.set_title(f"Customer {sel_cust} – Revenue Trend")
 plt.xticks(rotation=45)
 ax.legend()
-st.pyplot(fig)
+st.pyplot(fig, use_container_width=True)
 
 # LLM summary display
 st.markdown("### 🧠 LLM Summary")
@@ -341,3 +341,4 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
