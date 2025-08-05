@@ -143,7 +143,6 @@ for cid in [0, 1, 2]:
 
 
 #section 3
-
 st.subheader("3️⃣Individual Customer Revenue Trend & Anomaly Highlights")
 
 #  Decline level 
@@ -194,21 +193,21 @@ col1, col2, col3 = st.columns([1,2,1])
 st.pyplot(fig, use_container_width= False)
 
 #Section 4
-st.markdown("## 🔴 Section B: High-Risk Customer Overview (Decline Level 2 or 3)")
+st.markdown("<span style='font-size:20px'><b>🔴 Section B: High-Risk Customer Overview</b></span>", unsafe_allow_html=True)
 
-# Step 1️⃣ Decline level selector
+# Step 1️ Decline level selector
 sel_level = st.selectbox("Select Decline Level", [2, 3],key="sel_level_sectionB")
 
-# Step 2️⃣ Filter for high-risk customers
+# Step 2️ Filter for high-risk customers
 df_risk = df_final[df_final['decline_level'] == sel_level].copy()
 
 # Display basic customer metrics
 st.markdown(f"Identified {len(df_risk)} high-risk customers with Decline Level {sel_level}:")
 st.dataframe(df_risk[["cluster", "slope", "revenue_mean", "active_months"]])
 
-# Step 3️⃣ Expanded customer-level insights
+# Step 3️ Expanded customer-level insights
 st.markdown("---")
-st.markdown("### 🔍 Customer Trend & LLM Summary")
+st.markdown("<h2 style='font-size:22px;'>🔍 Customer Trend & LLM Summary</h2>", unsafe_allow_html=True)
 
 # Select individual customer to inspect
 sel_cust = st.selectbox("Select a customer to inspect", df_risk.index.tolist())
@@ -235,7 +234,7 @@ ax.legend()
 st.pyplot(fig, use_container_width=True)
 
 # LLM summary display
-st.markdown("### 🧠 LLM Summary")
+st.markdown("<h2 style='font-size:22px;'>🧠 LLM Summary</h2>", unsafe_allow_html=True)
 summary = cust_llm.get(str(sel_cust), "_No summary available._")
 st.markdown(summary)
 
@@ -258,7 +257,7 @@ else:
     summary_cache = {}
 
 # === SECTION C ===
-st.markdown("## 📄 Section C: Auto Report Generator")
+st.markdown("<span style='font-size:20px'><b>📄 Section C: Auto Report Generator</b></span>", unsafe_allow_html=True)
 
 # Step 1: User selection
 sel_cluster = st.selectbox("Select Cluster", sorted(result_df["cluster"].dropna().unique()),key="cluster_selector_sectionC")
@@ -275,7 +274,7 @@ if df_group.empty:
 summary_stats = df_group[["revenue_mean", "slope", "cv", "resid_std", "active_months"]].mean()
 n_customers = len(df_group)
 
-st.markdown("### 📊 Group Statistics")
+st.markdown("<h2 style='font-size:22px;'> 📊 Group Statistics</h2>", unsafe_allow_html=True)
 st.dataframe(summary_stats.to_frame("Mean Value"))
 
 # Step 4: Generate unique group key
@@ -348,6 +347,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
