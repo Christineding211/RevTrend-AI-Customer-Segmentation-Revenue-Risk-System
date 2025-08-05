@@ -142,7 +142,7 @@ for cid in [0, 1, 2]:
 #section 3
 
 
-st.markdown("## 3️⃣ Individual Customer Revenue Trend & Anomaly Highlights")
+st.markdown(""<span style='font-size:24px'><b>3️⃣ Individual Customer Revenue Trend & Anomaly Highlights", unsafe_allow_html=True)
 
 #  Decline level 
 sel_level = st.selectbox("Select Decline Level", sorted(df_final['decline_level'].dropna().unique()),key="sel_level_sectionA")
@@ -161,7 +161,7 @@ slope, intercept, *_ = linregress(x, y)
 trend = intercept + slope * x
 ma3 = rev.rolling(3).mean()
 
-# 👉 找出 resid 異常 + 負值月份
+# Detect anomalies and negatives
 resid = y - trend
 resid_std = resid.std()
 anomaly_mask = np.abs(resid) > 1.5 * resid_std
@@ -173,19 +173,23 @@ ax.plot(rev.index, y, label="Monthly Revenue", marker='o')
 ax.plot(rev.index, trend, label="Trend Line (Theil-Sen)", linestyle='--')
 ax.plot(rev.index, ma3, label="3-Month Moving Average", linestyle=':')
 
-# 🔴 異常 resid 點
+# resid
 ax.scatter(rev.index[anomaly_mask], y[anomaly_mask], color='red', label='Anomaly (high resid)', zorder=5)
 
 # 🟥 revenue be negative
 ax.scatter(rev.index[negative_mask], y[negative_mask], facecolors='none',
            edgecolors='red', s=100, linewidths=1.5, label='Negative Revenue')
 
-ax.set_title(f"Revenue Trend for Customer {sel_cust}")
-ax.set_ylabel("Revenue (£)")
-ax.set_xlabel("Month")
-plt.xticks(rotation=45)
+ax.set_title(f"Revenue Trend for Customer {sel_cust}",fontsize=14)
+ax.set_ylabel("Revenue (£)",fontsize=12)
+ax.set_xlabel("Month",fontsize=12)
+plt.xticks(rotation=45, fontsize=10)
 ax.legend()
-st.pyplot(fig, use_container_width=True)
+ax.grid(True)
+plt.tight_layout()
+#set in the middle
+col1, col2, col3 = st.columns([1,2,1])
+st.pyplot(fig, use_container_width= False)
 
 #Section 4
 st.markdown("## 🔴 Section B: High-Risk Customer Overview (Decline Level 2 or 3)")
@@ -342,5 +346,6 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
