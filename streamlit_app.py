@@ -12,7 +12,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 
-st.set_page_config(page_title="📊 Revenue Trend & Segmentation", layout="wide")
+st.set_page_config(page_title="📊 RevTrend: AI Customer Segmentation & Revenue Risk Dashboard",layout="centered")
 
 def load_data():
     try:
@@ -346,6 +346,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
