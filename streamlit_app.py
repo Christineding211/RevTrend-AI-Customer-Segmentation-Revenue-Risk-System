@@ -41,7 +41,7 @@ cols = ["#8CB5F6", "#E4BEF5", "#F6CD82", "#FA6986"]        # green → red
 
 c1, c2 = st.columns([2, 1])
 with c1:
-    fig, ax = plt.subplots(figsize=(6, 4))
+    fig, ax = plt.subplots(figsize=(5, 3))
 
     x = level_counts.index
     y = level_counts.values
@@ -167,7 +167,7 @@ anomaly_mask = np.abs(resid) > 1.5 * resid_std
 negative_mask = y < 0
 
 
-fig, ax = plt.subplots(figsize=(10, 4))
+fig, ax = plt.subplots(figsize=(6, 4))
 ax.plot(rev.index, y, label="Monthly Revenue", marker='o')
 ax.plot(rev.index, trend, label="Trend Line (Theil-Sen)", linestyle='--')
 ax.plot(rev.index, ma3, label="3-Month Moving Average", linestyle=':')
@@ -339,4 +339,5 @@ if group_key in summary_cache:
 
     st.markdown("### 📝 Generated Report")
     st.code(report_md, language="markdown")
+
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
