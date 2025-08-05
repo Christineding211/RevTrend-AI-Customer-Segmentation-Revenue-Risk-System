@@ -31,9 +31,6 @@ def load_data():
 # 正確接收回傳值
 result_df, df_pivot, df_final,cust_llm, cluster_llm = load_data()
 
-
-st.title("📊 Advanced Customer Revenue Trend & Segmentation Dashboard")
-
 #Picture 1 
 st.markdown("<h2 style='font-size:22px;'>1️⃣ Revenue Risk Overview</h2>", unsafe_allow_html=True)
 level_counts = result_df["decline_level"].value_counts().sort_index()
@@ -355,6 +352,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
