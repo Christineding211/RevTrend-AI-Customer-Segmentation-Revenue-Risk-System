@@ -52,7 +52,8 @@ with c1:
     ax.set_xlabel("Decline Level (0 = Stable, 3 = Critical)")
     ax.set_ylabel("Number of Customers")
     ax.set_title("Decline Level Distribution", fontsize=12)
-    st.pyplot(fig, use_container_width=True) 
+    plt.tight_layout()
+    st.pyplot(fig, use_container_width= False) 
 
 
 
@@ -341,4 +342,5 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
