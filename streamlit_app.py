@@ -179,10 +179,10 @@ ax.scatter(rev.index[anomaly_mask], y[anomaly_mask], color='red', label='Anomaly
 ax.scatter(rev.index[negative_mask], y[negative_mask], facecolors='none',
            edgecolors='red', s=100, linewidths=1.5, label='Negative Revenue')
 
-ax.set_title(f"Revenue Trend for Customer {sel_cust}",fontsize=14)
-ax.set_ylabel("Revenue (£)",fontsize=12)
-ax.set_xlabel("Month",fontsize=12)
-plt.xticks(rotation=45, fontsize=10)
+ax.set_title(f"Revenue Trend for Customer {sel_cust}",fontsize=12)
+ax.set_ylabel("Revenue (£)",fontsize=10)
+ax.set_xlabel("Month",fontsize=10)
+plt.xticks(rotation=45, fontsize=8)
 ax.legend()
 ax.grid(True)
 plt.tight_layout()
@@ -226,10 +226,14 @@ fig, ax = plt.subplots(figsize=(6, 3))
 ax.plot(rev.index, y, label='Monthly Revenue (£)', marker='o')
 ax.plot(rev.index, trend, label='Trend Line (Theil-Sen)', linestyle='--')
 ax.plot(rev.index, ma3, label='3-Month Moving Average', linestyle=':')
-ax.set_title(f"Customer {sel_cust} – Revenue Trend")
-plt.xticks(rotation=45)
+ax.set_title(f"Customer {sel_cust} – Revenue Trend",fontsize=12)
+ax.set_ylabel("Revenue (£)",fontsize=10)
+ax.set_xlabel("Month",fontsize=10)
+plt.xticks(rotation=45, fontsize=8)
 ax.legend()
-st.pyplot(fig, use_container_width=True)
+ax.grid(True)
+plt.tight_layout()
+st.pyplot(fig, use_container_width= False)
 
 # LLM summary display
 st.markdown("<h2 style='font-size:22px;'>🧠 LLM Summary</h2>", unsafe_allow_html=True)
@@ -345,6 +349,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
