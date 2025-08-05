@@ -142,7 +142,7 @@ for cid in [0, 1, 2]:
 #section 3
 
 
-st.markdown(""<span style='font-size:24px'><b>3️⃣ Individual Customer Revenue Trend & Anomaly Highlights", unsafe_allow_html=True)
+st.markdown("<span style='font-size:24px'><b>3. Individual Customer Revenue Trend & Anomaly Highlights</b></span>", unsafe_allow_html=True)
 
 #  Decline level 
 sel_level = st.selectbox("Select Decline Level", sorted(df_final['decline_level'].dropna().unique()),key="sel_level_sectionA")
@@ -346,6 +346,7 @@ if group_key in summary_cache:
     st.code(report_md, language="markdown")
 
     st.download_button("📥 Download Report as .txt", data=report_md, file_name=f"{group_key}_summary.txt")
+
 
 
 
